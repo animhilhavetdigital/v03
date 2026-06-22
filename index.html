@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DroitHabitat — Litiges crédit à la consommation</title>
+  <meta name="description" content="La solution experte pour analyser et agir sur vos litiges de crédit à la consommation. Évaluez votre dossier en ligne gratuitement en 2 minutes.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Fonts: Cormorant Garamond & Inter from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- ==================== HEADER / NAVBAR ==================== -->
+  <header class="navbar-wrapper">
+    <nav class="navbar">
+      <a href="#/" class="navbar-logo" id="nav-logo" style="height: 30px; display: flex; align-items: center;">
+        <img src="assets/logo.svg" alt="DroitHabitat Logo" style="height: 100%; width: auto;">
+      </a>
+      
+      <ul class="navbar-menu" id="navbar-menu">
+        <li><a href="#/" class="nav-link" data-route="home">Accueil</a></li>
+        <li><a href="#/blog" class="nav-link" data-route="blog">Blog</a></li>
+        <li><a href="#/contact" class="nav-link" data-route="contact">Contact</a></li>
+        <li><a href="#/auth/login" class="nav-link" data-route="login">Mon Espace</a></li>
+      </ul>
+      
+      <div class="navbar-actions">
+        <a href="#/#diagnostic-zone" class="btn btn-primary" style="padding: 8px 18px; border-radius: 999px; font-size: 12px;">
+          Faire le test
+        </a>
+        <!-- Mobile burger toggle -->
+        <button class="btn-icon" id="mobile-menu-toggle" style="display: none;">
+          <i data-lucide="layout-grid" style="width: 18px; height: 18px;"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==================== MOBILE NAVIGATION OVERLAY ==================== -->
+  <div class="modal-overlay" id="mobile-menu-modal">
+    <div class="modal-card" style="width: min(320px, 90%); text-align: center;">
+      <button class="modal-close" id="mobile-menu-close">&times;</button>
+      <h3 style="margin-bottom: 24px; font-weight: 700;">Menu</h3>
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 20px;">
+        <li><a href="#/" class="mobile-nav-link" style="font-size: 18px; font-weight: 600;">Accueil</a></li>
+        <li><a href="#/blog" class="mobile-nav-link" style="font-size: 18px; font-weight: 600;">Blog</a></li>
+        <li><a href="#/contact" class="mobile-nav-link" style="font-size: 18px; font-weight: 600;">Contact</a></li>
+        <li><a href="#/auth/login" class="mobile-nav-link" style="font-size: 18px; font-weight: 600;">Mon Espace</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN ROUTER VIEWS ==================== -->
+  <main id="app-view-container">
+    
+    <!-- 🏠 HOME / LANDING PAGE VIEW -->
+    <div class="view-section active-view" id="view-home">
+      
+      <!-- HERO -->
+      <section class="hero-section text-center" style="padding-top: 20px; padding-bottom: 40px; background-color: var(--color-bg);">
+        <div class="container" style="max-width: 1000px; background: #FFFFFF; padding: 24px 24px 60px 24px; border-radius: 32px; border: 1px solid var(--color-border-soft); box-shadow: var(--shadow-soft);">
+          
+          <!-- Small Breadcrumb at top -->
+          <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--color-muted); letter-spacing: 0.08em; margin-bottom: 20px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+            <span>✦ Expertise juridique de confiance</span>
+            <span>✦ Analyse intelligente de dossier</span>
+            <span>✦ Solution à votre portée</span>
+          </div>
+
+          <!-- Hero Image with Fade gradient -->
+          <div class="hero-image-wrapper" style="margin-top: 0; border-radius: 20px; aspect-ratio: 21/9; overflow: hidden; position: relative;">
+            <img src="assets/hero_custom.jpg" alt="Cabinet juridique DroitHabitat" style="width: 100%; height: 100%; object-fit: cover;">
+            <div style="position: absolute; inset: auto 0 0 0; height: 75%; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #FFFFFF 95%); pointer-events: none;"></div>
+          </div>
+
+          <!-- H1 Overlay / Just below -->
+          <div style="margin-top: -70px; position: relative; z-index: 10;">
+            <h1 style="font-size: clamp(34px, 5.5vw, 64px); line-height: 1.05; margin-bottom: 16px;">
+              Votre crédit conso vous <span class="accent-word">pèse</span> ?<br>
+              Analysez vos <span class="accent-word">droits</span> gratuitement.
+            </h1>
+            <p style="font-size: 15px; max-width: 600px; margin: 0 auto 32px; color: var(--color-text-soft);">
+              Vous êtes à un clic de transformer votre situation. Vérifiez gratuitement en 2 minutes si votre dossier présente un levier d'action grâce à notre analyse intelligente.
+            </p>
+
+            <!-- CTA + social proof inline -->
+            <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
+              <a href="#/#diagnostic-zone" class="btn btn-primary" style="padding: 14px 28px; border-radius: 999px; font-size: 14px; background: var(--color-primary); color: #fff;">
+                ✦ Test gratuit - 2 min
+              </a>
+              <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--color-text);">
+                <i data-lucide="award" style="width: 18px; height: 18px; color: var(--color-primary);"></i>
+                <span>98% Taux de réussite</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SOLUTION & DIAGNOSTIC TUNNEL -->
+      <section class="solution-section background-word-container" id="diagnostic-zone" style="background-color: #FFFFFF;">
+        <div class="background-word">Droit</div>
+        <div class="container">
+          <div class="text-center" style="max-width: 700px; margin: 0 auto 32px; z-index: 10;">
+            <span class="label-pill" style="background: var(--color-bg-soft);">Solution IA 2.0</span>
+            <h2>Votre solution en <span class="accent-word">2 minutes</span></h2>
+            <p style="margin-top: 12px;">
+              Notre test gratuit analyse instantanément votre dossier et vous dit si vous pouvez récupérer vos droits. Gratuit, sans engagement, 100% en ligne.
+            </p>
+          </div>
+
+          <!-- Cards Row -->
+          <div class="grid-3" style="margin-bottom: 40px;">
+            <div class="service-card" style="border-radius: 20px; overflow: hidden; background: #FFFFFF; border: 1px solid var(--color-border-soft); box-shadow: var(--shadow-soft); display: flex; flex-direction: column; transition: transform .35s ease, box-shadow .35s ease;">
+              <div style="position: relative; aspect-ratio: 4/3; overflow: hidden;">
+                <img src="assets/card_analysis.png" alt="Analyse IA 2.0" style="width: 100%; height: 100%; object-fit: cover;">
+                <div style="position: absolute; inset: auto 0 0 0; height: 50%; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #FFFFFF 95%); pointer-events: none;"></div>
+              </div>
+              <div style="padding: 24px; text-align: center; display: flex; flex-direction: column; gap: 8px;">
+                <h3 style="font-family: var(--font-heading); font-size: 24px; color: var(--color-text);">Analyse IA 2.0</h3>
+                <p style="font-size: 13px; color: var(--color-text-soft);">Exploitation instantanée des règles de conformité bancaire.</p>
+              </div>
+            </div>
+            
+            <div class="service-card" style="border-radius: 20px; overflow: hidden; background: #FFFFFF; border: 1px solid var(--color-border-soft); box-shadow: var(--shadow-soft); display: flex; flex-direction: column; transition: transform .35s ease, box-shadow .35s ease;">
+              <div style="position: relative; aspect-ratio: 4/3; overflow: hidden;">
+                <img src="assets/card_success.png" alt="98% Taux de réussite" style="width: 100%; height: 100%; object-fit: cover;">
+                <div style="position: absolute; inset: auto 0 0 0; height: 50%; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #FFFFFF 95%); pointer-events: none;"></div>
+              </div>
+              <div style="padding: 24px; text-align: center; display: flex; flex-direction: column; gap: 8px;">
+                <h3 style="font-family: var(--font-heading); font-size: 24px; color: var(--color-text);">98% Taux de réussite</h3>
+                <p style="font-size: 13px; color: var(--color-text-soft);">Pour les dossiers éligibles ayant initié la procédure (+12%).</p>
+              </div>
+            </div>
+            
+            <div class="service-card" style="border-radius: 20px; overflow: hidden; background: #FFFFFF; border: 1px solid var(--color-border-soft); box-shadow: var(--shadow-soft); display: flex; flex-direction: column; transition: transform .35s ease, box-shadow .35s ease;">
+              <div style="position: relative; aspect-ratio: 4/3; overflow: hidden;">
+                <img src="assets/card_guarantee.png" alt="Éligibilité Garantie" style="width: 100%; height: 100%; object-fit: cover;">
+                <div style="position: absolute; inset: auto 0 0 0; height: 50%; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #FFFFFF 95%); pointer-events: none;"></div>
+              </div>
+              <div style="padding: 24px; text-align: center; display: flex; flex-direction: column; gap: 8px;">
+                <h3 style="font-family: var(--font-heading); font-size: 24px; color: var(--color-text);">Éligibilité Garantie</h3>
+                <p style="font-size: 13px; color: var(--color-text-soft);">Rapports d'experts validés par notre équipe juridique.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- The Interactive Diagnostic Wrapper -->
+          <div class="diagnostic-container" id="diagnostic-panel">
+            <div class="diag-tabs">
+              <button class="diag-tab active" id="tab-chat">Assistant Virtuel (Conseillé)</button>
+              <button class="diag-tab" id="tab-classic">Formulaire Classique</button>
+            </div>
+            
+            <div class="diag-body">
+              
+              <!-- 1. Start Interface (Intro) -->
+              <div id="diag-intro-pane" style="text-align: center; margin: auto; max-width: 480px;">
+                <i data-lucide="sparkles" style="width: 48px; height: 48px; color: var(--color-primary); margin-bottom: 16px;"></i>
+                <h3 style="margin-bottom: 12px;">Prêt à démarrer l'analyse ?</h3>
+                <p style="margin-bottom: 24px;">Sélectionnez votre mode d'interaction préféré ci-dessus ou cliquez ci-dessous pour démarrer le test d'éligibilité en 2 minutes.</p>
+                <button class="btn btn-primary" id="btn-start-diag" style="font-size: 15px; padding: 14px 32px;">
+                  Test interactif - 2 min gratuit
+                </button>
+              </div>
+
+              <!-- 2. Chat Wizard Pane -->
+              <div id="diag-chat-pane" style="display: none;">
+                <div class="chat-window">
+                  <div class="chat-header">
+                    <div class="chat-bot-info">
+                      <div class="chat-avatar">AI</div>
+                      <div>
+                        <strong style="font-size: 13px; color: var(--color-text);">Assistant DroitHabitat</strong>
+                        <div style="font-size: 10px; color: var(--color-text-soft);">En ligne</div>
+                      </div>
+                    </div>
+                    <div class="chat-audio-controls">
+                      <button class="btn btn-secondary" id="btn-toggle-audio" style="padding: 6px 12px; font-size: 11px; gap: 6px;">
+                        <i data-lucide="volume-2" style="width: 14px; height: 14px;"></i>
+                        <span>Activer Audio</span>
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div class="chat-body" id="chat-messages-box">
+                    <!-- Messages dynamically generated by JS -->
+                  </div>
+                  
+                  <div class="chat-input-area" id="chat-input-container">
+                    <!-- Options buttons dynamically generated by JS -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3. Classic Wizard Pane -->
+              <div id="diag-classic-pane" style="display: none;">
+                <div class="wizard-header">
+                  <div>
+                    <span style="font-size: 12px; font-weight: bold; color: var(--color-primary);" id="classic-step-label">Étape 1 sur 4</span>
+                    <h4 style="font-size: 16px; font-weight: 600;" id="classic-section-title">Informations générales</h4>
+                  </div>
+                  <div class="wizard-progress-bar">
+                    <div class="wizard-progress-fill" id="classic-progress-fill"></div>
+                  </div>
+                </div>
+                
+                <div class="wizard-step-content" id="classic-step-content">
+                  <!-- Dynamic Form Elements -->
+                </div>
+                
+                <div class="wizard-footer">
+                  <button class="btn btn-secondary" id="btn-classic-prev">Étape précédente</button>
+                  <button class="btn btn-primary" id="btn-classic-next">Continuer</button>
+                </div>
+              </div>
+
+              <!-- 4. Analysis Waiting Screen -->
+              <div id="diag-waiting-pane" class="loading-view" style="display: none;">
+                <div class="spinner"></div>
+                <h3 style="margin-top: 10px;">Analyse en cours...</h3>
+                <p>Nous évaluons vos réponses sur 16 critères juridiques</p>
+              </div>
+
+              <!-- 5. Success / Result Screen -->
+              <div id="diag-result-pane" style="display: none; text-align: center; margin: auto; max-width: 500px;">
+                <div id="diag-eligible-box" style="display: none;">
+                  <div class="score-badge" id="eligible-score-num">12/16</div>
+                  <h3 style="margin-bottom: 12px;">Bonne nouvelle, vous êtes éligible !</h3>
+                  <p style="margin-bottom: 24px;" id="eligible-msg-desc">Votre dossier présente 12 éléments favorables sur 16 critères. Nous recommandons une action rapide.</p>
+                  <div style="display: flex; gap: 16px; justify-content: center;">
+                    <a href="#/offres" class="btn btn-primary">Voir les offres</a>
+                    <button class="btn btn-secondary btn-restart-test">Recommencer</button>
+                  </div>
+                </div>
+                
+                <div id="diag-ineligible-box" style="display: none;">
+                  <div class="score-badge" id="ineligible-score-num" style="color: var(--color-muted);">3/16</div>
+                  <h3 style="margin-bottom: 12px;">Pas de levier d'action évident</h3>
+                  <p style="margin-bottom: 24px;" id="ineligible-msg-desc">D'après vos réponses (3/16), nous ne détectons pas suffisamment d'irrégularités pour engager une démarche.</p>
+                  <button class="btn btn-primary btn-restart-test">Recommencer le test</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- METHODE -->
+      <section class="method-section">
+        <div class="container">
+          <div class="text-center" style="max-width: 600px; margin: 0 auto 54px;">
+            <span class="label-pill">Notre méthode</span>
+            <h2>Comment ça marche ?</h2>
+          </div>
+          
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-number">01</div>
+              <div class="step-title">Test (2 min)</div>
+              <p style="font-size: 14px;">Vérifiez votre éligibilité en ligne instantanément grâce à notre formulaire intelligent d'analyse.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">02</div>
+              <div class="step-title">Offre personnalisée</div>
+              <p style="font-size: 14px;">Découvrez nos solutions juridiques adaptées à votre dossier spécifique et le montant récupérable.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">03</div>
+              <div class="step-title">Paiement sécurisé</div>
+              <p style="font-size: 14px;">Réglez en toute sérénité. Nous ne facturons que si votre dossier a de fortes chances de succès.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">04</div>
+              <div class="step-title">Dossier activé</div>
+              <p style="font-size: 14px;">Nous prenons le relais immédiatement. Suivez l'avancée de votre litige depuis votre espace client.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="testimonials-section" style="background-color: var(--color-bg-soft);">
+        <div class="container">
+          <div class="text-center" style="max-width: 650px; margin: 0 auto 48px;">
+            <span class="label-pill" style="background: #FFFFFF;">Avis clients</span>
+            <h2>Ce Que Disent Nos Clients</h2>
+            <p style="margin-top: 12px;">Découvrez comment nos clients transforment leur croissance grâce à des solutions avancées. Voici exactement comment ils y sont parvenus.</p>
+          </div>
+          
+          <div class="testimonial-panel">
+            <div class="grid-2">
+              
+              <!-- Video card block left side -->
+              <div>
+                <div class="testimonial-video-card">
+                  <img src="assets/testimonial_video_thumb.png" alt="David Pierce">
+                  <div class="video-overlay">
+                    <span class="video-label">Consultant Marketing chez Giggle</span>
+                    <button class="play-btn" id="btn-play-video-fake">
+                      <i data-lucide="play" style="fill: var(--color-primary); stroke: none; width: 20px; height: 20px;"></i>
+                    </button>
+                    <div style="display: flex; justify-content: space-between; align-items: center; color: #FFFFFF; font-size: 11px;">
+                      <span>David Pierce</span>
+                      <span>0:00 / 0:06</span>
+                    </div>
+                  </div>
+                </div>
+                <h3 style="font-size: 22px; line-height: 1.2;">« La meilleure décision financière de notre année »</h3>
+                <p style="margin-top: 8px; font-size: 14px;">Nous économisons des centaines d'heures de démarches complexes grâce aux documents juridiques pré-remplis générés par la plateforme.</p>
+              </div>
+
+              <!-- Reviews list right side -->
+              <div class="testimonial-reviews-grid">
+                
+                <div class="review-card">
+                  <div class="stars">★★★★★</div>
+                  <p style="font-size: 12px; line-height: 1.5; color: var(--color-text-soft);">« La transformation était remarquable à observer. En quelques mois, notre productivité a explosé tandis que les membres de l'équipe adoptaient le nouveau système et commençaient à livrer des résultats exceptionnels. »</p>
+                  <div class="review-author">Sally Taher</div>
+                </div>
+                
+                <div class="review-card">
+                  <div class="stars">★★★★★</div>
+                  <p style="font-size: 12px; line-height: 1.5; color: var(--color-text-soft);">« Son interface intuitive et ses analyses robustes sont essentielles pour naviguer sur les marchés. »</p>
+                  <div class="review-author">Jaylen Carter</div>
+                </div>
+                
+                <div class="review-card">
+                  <div class="stars">★★★★★</div>
+                  <p style="font-size: 12px; line-height: 1.5; color: var(--color-text-soft);">« Depuis la mise en œuvre de cette solution, nous avons constaté une amélioration spectaculaire de notre efficacité analytique. »</p>
+                  <div class="review-author">Rachel Foster</div>
+                </div>
+                
+                <div class="review-card">
+                  <div class="stars">★★★★★</div>
+                  <p style="font-size: 12px; line-height: 1.5; color: var(--color-text-soft);">« Une expérience vraiment fluide. Nous ne nous attendions pas à un retour sur investissement aussi rapide. Les perspectives sont incroyables et l'interface est d'une fluidité exceptionnelle. »</p>
+                  <div class="review-author">Linda Watts</div>
+                </div>
+                
+              </div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 40px; border-top: 1px solid var(--color-border-soft); padding-top: 24px; flex-wrap: wrap; gap: 16px;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span class="stars">★★★★★</span>
+                <span style="font-weight: 600; font-size: 13px;">Noté 4.9/5 par plus de 1 200 emprunteurs</span>
+              </div>
+              <div style="font-size: 12px; font-weight: 500; color: var(--color-muted);">
+                Témoignages recueillis sous contrôle d'huissier de justice
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ ACCORDION -->
+      <section class="faq-section">
+        <div class="container">
+          <div class="grid-2" style="align-items: flex-start;">
+            <div>
+              <span class="label-pill">FAQ</span>
+              <h2 style="margin-bottom: 16px;">Questions <span class="accent-word">fréquentes</span></h2>
+              <p style="margin-bottom: 24px; max-width: 400px;">
+                Retrouvez toutes les réponses à vos questions concernant nos services, la tarification et le déroulement de votre recours.
+              </p>
+              <a href="#/contact" class="btn btn-secondary">Poser une autre question</a>
+            </div>
+            
+            <div class="accordion">
+              
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  <span>Le test est-il vraiment gratuit ?</span>
+                  <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                  <div class="accordion-inner">
+                    Oui, et il le restera.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  <span>Combien coûte une médiation ?</span>
+                  <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                  <div class="accordion-inner">
+                    Le prix vous est révélé après le test, si vous êtes éligible.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  <span>Puis-je agir seul après le diagnostic ?</span>
+                  <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                  <div class="accordion-inner">
+                    Absolument. Le pack de preuves est conçu pour ça.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  <span>Qu'est-ce qui rend mon dossier éligible ?</span>
+                  <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                  <div class="accordion-inner">
+                    Démarchage, vente à domicile, délais non respectés...
+                  </div>
+                </div>
+              </div>
+              
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  <span>Combien de temps dure une médiation ?</span>
+                  <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                  <div class="accordion-inner">
+                    En moyenne 3 à 6 semaines.
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="cta-section text-center" style="background-color: var(--color-brown-dark); color: #FFFFFF;">
+        <div class="container" style="max-width: 700px;">
+          <h2 style="color: #FFFFFF; margin-bottom: 16px;">Prêt à savoir si votre dossier vaut le coup ?</h2>
+          <p style="color: rgba(255,255,255,0.7); margin-bottom: 32px;">Effectuez notre diagnostic intelligent instantané en 2 minutes et identifiez les leviers d'actions possibles sur votre emprunt.</p>
+          <button class="btn btn-primary" id="btn-final-cta-scroll" style="box-shadow: 0 12px 24px rgba(217,131,63,0.4);">
+            Faire le test gratuit — ça prend 2 min
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- 🏷️ OFFERS VIEW -->
+    <div class="view-section" id="view-offres">
+      <section class="section">
+        <div class="container">
+          <div class="text-center" style="max-width: 600px; margin: 0 auto 32px;">
+            <span class="label-pill">Éligibilité confirmée</span>
+            <h2>Choisissez votre offre</h2>
+            <p style="margin-top: 12px;">Un accompagnement adapté à chaque étape de votre dossier.</p>
+          </div>
+          
+          <div class="offers-container">
+            <div class="offer-card">
+              <span class="offer-badge">Unique</span>
+              <h3 style="font-size: 28px; font-weight: 700; color: var(--color-text);">Diagnostic</h3>
+              <div class="offer-price">99 €</div>
+              <p style="color: var(--color-text-soft); font-size: 14px;">Mémoire + Pack de preuves structuré pour agir seul.</p>
+              
+              <ul class="offer-features">
+                <li>
+                  <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+                  <span>Analyse IA complète de votre emprunt</span>
+                </li>
+                <li>
+                  <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+                  <span>Rapport PDF mémoire détaillé</span>
+                </li>
+                <li>
+                  <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+                  <span>Pack de preuves ordonnées prêtes à l'envoi</span>
+                </li>
+                <li>
+                  <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+                  <span>Recommandations stratégiques personnalisées</span>
+                </li>
+              </ul>
+              
+              <button class="btn btn-primary" id="btn-select-offer" style="width: 100%; padding-block: 14px;">
+                Choisir cette offre
+              </button>
+            </div>
+            
+            <div class="guarantee-box">
+              <i data-lucide="shield-check" style="width: 32px; height: 32px; color: var(--color-primary); margin-bottom: 12px; display: inline-block;"></i>
+              <h4 style="font-weight: 600; font-size: 16px; margin-bottom: 6px;">Satisfait ou remboursé</h4>
+              <p style="font-size: 13px; color: var(--color-text-soft);">Si vous n'êtes pas satisfait de votre rapport dans les 7 jours suivant la réception, nous vous remboursons intégralement. Sans justification.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 💳 PAYMENT VIEW -->
+    <div class="view-section" id="view-paiement">
+      <section class="section">
+        <div class="container" style="max-width: 900px;">
+          <h2 style="margin-bottom: 8px;">Paiement sécurisé</h2>
+          <p style="margin-bottom: 32px; color: var(--color-text-soft);">Finalisez votre commande en toute sécurité via notre passerelle chiffrée.</p>
+          
+          <div class="payment-grid">
+            <div class="payment-form-card">
+              <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 24px; display: flex; align-items: center; gap: 8px;">
+                <i data-lucide="credit-card" style="color: var(--color-primary);"></i>
+                Informations de carte bancaire
+              </h3>
+              
+              <form id="payment-checkout-form" style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="form-group">
+                  <label class="form-label">Numéro de carte</label>
+                  <input type="text" class="input-field" placeholder="4242 4242 4242 4242" required id="pay-card-num">
+                </div>
+                
+                <div class="grid-2" style="gap: 20px; align-items: flex-start;">
+                  <div class="form-group">
+                    <label class="form-label">Expiration</label>
+                    <input type="text" class="input-field" placeholder="MM/AA" required id="pay-card-exp">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">CVC</label>
+                    <input type="text" class="input-field" placeholder="123" required id="pay-card-cvc">
+                  </div>
+                </div>
+                
+                <p style="font-size: 12px; color: var(--color-muted); display: flex; align-items: center; gap: 6px;">
+                  <i data-lucide="lock" style="width: 14px; height: 14px; color: var(--color-primary);"></i>
+                  Paiement sécurisé par Stripe. Vos données sont chiffrées de bout en bout.
+                </p>
+                
+                <button type="submit" class="btn btn-primary" style="padding-block: 14px;" id="btn-submit-payment">
+                  Payer 99 €
+                </button>
+              </form>
+            </div>
+            
+            <div class="payment-summary-card">
+              <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 20px;">Résumé</h3>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--color-border-soft); padding-bottom: 12px; margin-bottom: 16px;">
+                <span>Offre sélectionnée</span>
+                <strong id="pay-summary-title">Diagnostic</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 20px; font-weight: 700; color: var(--color-text); margin-bottom: 24px;">
+                <span>Total</span>
+                <span>99 €</span>
+              </div>
+              
+              <div style="background: #FFFFFF; border-radius: 12px; padding: 16px; border: 1px solid var(--color-border-soft); display: flex; align-items: flex-start; gap: 10px;">
+                <i data-lucide="shield" style="color: var(--color-primary); flex-shrink: 0;"></i>
+                <div style="font-size: 11px; color: var(--color-text-soft);">
+                  <strong>Paiement 100% sécurisé</strong><br>
+                  Certification PCI DSS de niveau 1 garantissant le chiffrement complet.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 🚀 ONBOARDING VIEW -->
+    <div class="view-section" id="view-onboarding">
+      <section class="section">
+        <div class="container">
+          <div class="onboarding-card">
+            <div class="contact-item-icon" style="background: var(--color-primary-light); width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 20px;">
+              <i data-lucide="party-popper" style="width: 28px; height: 28px; color: var(--color-primary);"></i>
+            </div>
+            <h2>Votre dossier est ouvert !</h2>
+            <p style="margin-top: 12px;">Bienvenue chez Droit Habitat. Votre espace personnel est prêt et sécurisé.</p>
+            
+            <div class="onboarding-steps">
+              <h4 style="font-weight: 600; font-size: 15px; margin-bottom: 12px;">Prochaines étapes</h4>
+              
+              <div class="onboarding-step-item">
+                1. Remplissez le formulaire initial de votre dossier
+              </div>
+              <div class="onboarding-step-item">
+                2. Téléchargez vos contrats, relevés et preuves
+              </div>
+              <div class="onboarding-step-item">
+                3. Notre IA analyse votre dossier sous 72h
+              </div>
+              <div class="onboarding-step-item">
+                4. Recevez votre rapport et choisissez la suite
+              </div>
+            </div>
+            
+            <a href="#/auth/login" class="btn btn-primary" style="padding: 14px 36px;">
+              Accéder à mon espace
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 🔐 LOGIN VIEW -->
+    <div class="view-section" id="view-login">
+      <section class="section">
+        <div class="container">
+          <div class="auth-container">
+            <div class="auth-header">
+              <h2>Se connecter</h2>
+              <p style="font-size: 13px; color: var(--color-text-soft); margin-top: 6px;">Accédez à votre dossier DroitHabitat</p>
+            </div>
+            
+            <form id="login-form" style="display: flex; flex-direction: column; gap: 20px;">
+              <div class="form-group">
+                <label class="form-label">Adresse Email</label>
+                <input type="email" class="input-field" placeholder="nom@exemple.com" required id="login-email">
+              </div>
+              
+              <div class="form-group">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                  <label class="form-label" style="margin: 0;">Mot de passe</label>
+                  <a href="#" style="font-size: 12px; color: var(--color-primary);">Mot de passe oublié ?</a>
+                </div>
+                <input type="password" class="input-field" placeholder="••••••••" required id="login-password">
+              </div>
+              
+              <button type="submit" class="btn btn-primary" style="padding-block: 12px;">
+                Se connecter
+              </button>
+            </form>
+            
+            <div class="auth-footer">
+              Vous n'avez pas de compte ? <a href="#/auth/register">Créer un compte</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 🔐 REGISTER VIEW -->
+    <div class="view-section" id="view-register">
+      <section class="section">
+        <div class="container">
+          <div class="auth-container">
+            <div class="auth-header">
+              <h2>Créer un compte</h2>
+              <p style="font-size: 13px; color: var(--color-text-soft); margin-top: 6px;">Suivez votre analyse d'éligibilité en ligne</p>
+            </div>
+            
+            <form id="register-form" style="display: flex; flex-direction: column; gap: 20px;">
+              <div class="grid-2" style="gap: 16px; align-items: flex-start;">
+                <div class="form-group">
+                  <label class="form-label">Nom</label>
+                  <input type="text" class="input-field" placeholder="Dupont" required id="register-lastname">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Prénom</label>
+                  <input type="text" class="input-field" placeholder="Jean" required id="register-firstname">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Adresse Email</label>
+                <input type="email" class="input-field" placeholder="jean.dupont@exemple.com" required id="register-email">
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Mot de passe</label>
+                <input type="password" class="input-field" placeholder="••••••••" required id="register-password">
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Confirmer le mot de passe</label>
+                <input type="password" class="input-field" placeholder="••••••••" required id="register-confirm">
+              </div>
+              
+              <button type="submit" class="btn btn-primary" style="padding-block: 12px;">
+                S'inscrire
+              </button>
+            </form>
+            
+            <div class="auth-footer">
+              Vous avez déjà un compte ? <a href="#/auth/login">Se connecter</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 📝 BLOG VIEW -->
+    <div class="view-section" id="view-blog">
+      <section class="section background-word-container">
+        <div class="background-word">Conseil</div>
+        <div class="container">
+          <div class="text-center" style="max-width: 600px; margin: 0 auto 48px;">
+            <span class="label-pill">Notre Blog</span>
+            <h2>Dernières publications</h2>
+            <p style="margin-top: 12px;">Découvrez nos articles éducatifs sur le crédit à la consommation, la médiation, et vos droits.</p>
+          </div>
+          
+          <div class="blog-grid">
+            
+            <div class="blog-card">
+              <img class="blog-card-img" src="assets/office_custom.png" alt="Litige crédit">
+              <div class="blog-card-body">
+                <span class="blog-category">Droit & Consommation</span>
+                <h3>Comment se défendre face à un crédit abusif ?</h3>
+                <p style="font-size: 13px;">Comprendre les démarches et vos droits face aux banques et organismes de crédit...</p>
+                <a href="#/blog/1" class="btn btn-secondary" style="align-self: flex-start; padding: 6px 14px; font-size: 11px; margin-top: 8px;">
+                  Lire la suite &rarr;
+                </a>
+              </div>
+            </div>
+
+            <!-- Pre-populated mock cards for visual rhythm -->
+            <div class="blog-card">
+              <div class="blog-card-img" style="display:flex; align-items:center; justify-content:center; background:#E8DDD3; color:#4A260F;">
+                <i data-lucide="scale" style="width: 48px; height: 48px; stroke-width: 1;"></i>
+              </div>
+              <div class="blog-card-body">
+                <span class="blog-category">Procédure</span>
+                <h3>Tout savoir sur les taux usuraires</h3>
+                <p style="font-size: 13px;">Quels sont les seuils légaux de taux d'intérêt et comment contester les calculs abusifs.</p>
+                <a href="#/blog" class="btn btn-secondary" style="align-self: flex-start; padding: 6px 14px; font-size: 11px; margin-top: 8px;">
+                  Lire la suite &rarr;
+                </a>
+              </div>
+            </div>
+
+            <div class="blog-card">
+              <div class="blog-card-img" style="display:flex; align-items:center; justify-content:center; background:#E8DDD3; color:#4A260F;">
+                <i data-lucide="shield-check" style="width: 48px; height: 48px; stroke-width: 1;"></i>
+              </div>
+              <div class="blog-card-body">
+                <span class="blog-category">Médiation</span>
+                <h3>Délai de rétractation : vos recours</h3>
+                <p style="font-size: 13px;">Guide pratique sur les délais de rétractation et l'absence d'information légale obligatoire.</p>
+                <a href="#/blog" class="btn btn-secondary" style="align-self: flex-start; padding: 6px 14px; font-size: 11px; margin-top: 8px;">
+                  Lire la suite &rarr;
+                </a>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ✉️ CONTACT VIEW -->
+    <div class="view-section" id="view-contact">
+      <section class="section">
+        <div class="container">
+          <div class="text-center" style="max-width: 600px; margin: 0 auto 48px;">
+            <span class="label-pill">Contact</span>
+            <h2>Contactez-nous</h2>
+            <p style="margin-top: 12px;">Vous avez une question ou besoin d'aide avec votre dossier ? Notre équipe est à votre disposition.</p>
+          </div>
+          
+          <div class="contact-grid">
+            <div class="contact-info">
+              
+              <div class="contact-item">
+                <div class="contact-item-icon">
+                  <i data-lucide="mail"></i>
+                </div>
+                <div class="contact-item-details">
+                  <h4>Email</h4>
+                  <p><a href="mailto:contact@droithabitat.fr">contact@droithabitat.fr</a></p>
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <div class="contact-item-icon">
+                  <i data-lucide="phone"></i>
+                </div>
+                <div class="contact-item-details">
+                  <h4>Téléphone</h4>
+                  <p><a href="tel:+33123456789">+33 1 23 45 67 89</a></p>
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <div class="contact-item-icon">
+                  <i data-lucide="map-pin"></i>
+                </div>
+                <div class="contact-item-details">
+                  <h4>Adresse</h4>
+                  <p>123 Rue de la République, 75001 Paris, France</p>
+                </div>
+              </div>
+              
+            </div>
+            
+            <div class="payment-form-card">
+              <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 20px;">Envoyer un message</h3>
+              <form id="contact-form" style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="grid-2" style="gap: 16px; align-items: flex-start;">
+                  <div class="form-group">
+                    <label class="form-label">Prénom</label>
+                    <input type="text" class="input-field" placeholder="Jean" required id="contact-firstname">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Nom</label>
+                    <input type="text" class="input-field" placeholder="Dupont" required id="contact-lastname">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="input-field" placeholder="jean.dupont@exemple.com" required id="contact-email">
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label">Message</label>
+                  <textarea class="input-field" rows="4" placeholder="Votre message..." required style="resize: none;" id="contact-msg"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="padding-block: 12px;" id="btn-send-contact">
+                  Envoyer le message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ⚖️ LEGAL VIEW -->
+    <div class="view-section" id="view-legal">
+      <section class="section">
+        <div class="container" style="max-width: 800px;">
+          <h1 style="font-size: 40px; margin-bottom: 24px;">Mentions Légales & CGV</h1>
+          
+          <div style="display: flex; flex-direction: column; gap: 32px;">
+            <div>
+              <h3 style="font-size: 22px; font-weight: 600; margin-bottom: 12px;">1. Éditeur du site</h3>
+              <p>DroitHabitat SAS, société par actions simplifiée au capital de 10 000€, immatriculée au Registre du Commerce et des Sociétés de Paris sous le numéro B 123 456 789. Siège social : 123 Rue de la République, 75001 Paris, France. Directeur de publication : Service juridique DroitHabitat.</p>
+            </div>
+            
+            <div>
+              <h3 style="font-size: 22px; font-weight: 600; margin-bottom: 12px;">2. Conditions Générales de Vente (CGV)</h3>
+              <p>Le site DroitHabitat propose un test d'éligibilité gratuit destiné à évaluer la conformité réglementaire des contrats de crédit à la consommation. Les offres de services payantes, notamment l'offre de "Diagnostic" à 99€, consistent en la fourniture d'un rapport PDF et d'un pack de preuves personnalisés. Nos offres sont soumises à une garantie "Satisfait ou remboursé" sous 7 jours sans justification supplémentaire.</p>
+            </div>
+            
+            <div>
+              <h3 style="font-size: 22px; font-weight: 600; margin-bottom: 12px;">3. Politique de Confidentialité</h3>
+              <p>Toutes les données à caractère personnel récoltées durant le test d'éligibilité ou via notre formulaire de contact font l'objet d'un traitement hautement sécurisé conforme au Règlement Général sur la Protection des Données (RGPD). DroitHabitat s'engage à ne jamais céder ni revendre vos données personnelles à des tiers. Vous disposez d'un droit d'accès, de rectification et d'effacement de vos données sur simple demande par mail.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- ==================== APPOINTMENT SCHEDULER MODAL ==================== -->
+  <div class="modal-overlay" id="scheduler-modal">
+    <div class="modal-card">
+      <button class="modal-close" id="scheduler-close">&times;</button>
+      <h3 style="margin-bottom: 12px; font-weight: 700;">Planifier un rendez-vous</h3>
+      <p style="font-size: 14px; margin-bottom: 24px; color: var(--color-text-soft);">Choisissez une date pour échanger avec notre conseiller juridique.</p>
+      
+      <form id="scheduler-form" style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="form-group">
+          <label class="form-label">Sélectionnez une Date</label>
+          <input type="date" class="input-field" required id="sched-date">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Horaire souhaité</label>
+          <select class="input-field select-field" required id="sched-time">
+            <option value="">-- Choisir un créneau --</option>
+            <option value="09:00">09:00 - 10:00</option>
+            <option value="10:30">10:30 - 11:30</option>
+            <option value="14:00">14:00 - 15:00</option>
+            <option value="15:30">15:30 - 16:30</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding-block: 12px;">
+          Valider le rendez-vous
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo" style="height: 34px; margin-bottom: 12px;">
+            <img src="assets/logo.svg" alt="DroitHabitat Logo" style="height: 100%; width: auto; filter: brightness(0) invert(1);">
+          </div>
+          <p>« La solution experte pour analyser et agir sur vos litiges de crédit à la consommation. »</p>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Liens utiles</h4>
+          <ul class="footer-links">
+            <li><a href="#/">Comment ça marche</a></li>
+            <li><a href="#/#faq">FAQ</a></li>
+            <li><a href="#/contact">Contact</a></li>
+            <li><a href="#/legal">Mentions légales</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Nous contacter</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:contact@droithabitat.fr" style="display: flex; align-items: center; gap: 6px;">
+              <i data-lucide="mail" style="width: 14px; height: 14px;"></i> contact@droithabitat.fr
+            </a></li>
+            <li><a href="tel:+33123456789" style="display: flex; align-items: center; gap: 6px;">
+              <i data-lucide="phone" style="width: 14px; height: 14px;"></i> +33 1 23 45 67 89
+            </a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Suivez-nous</h4>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-btn"><i data-lucide="facebook" style="width: 16px; height: 16px;"></i></a>
+            <a href="#" class="footer-social-btn"><i data-lucide="instagram" style="width: 16px; height: 16px;"></i></a>
+            <a href="#" class="footer-social-btn"><i data-lucide="linkedin" style="width: 16px; height: 16px;"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2026 DroitHabitat. Tous droits réservés.</p>
+        <div style="display: flex; gap: 16px;">
+          <a href="#/legal" style="color: inherit;">Mentions légales</a>
+          <a href="#/legal" style="color: inherit;">CGV</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core Javascript Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
