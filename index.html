@@ -9,10 +9,10 @@
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="style.css">
   
-  <!-- Fonts: Cormorant Garamond & Inter from Google Fonts -->
+  <!-- Fonts: Poppins & Inter from Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -28,9 +28,8 @@
       
       <ul class="navbar-menu" id="navbar-menu">
         <li><a href="#/" class="nav-link" data-route="home">Accueil</a></li>
-        <li><a href="#/blog" class="nav-link" data-route="blog">Blog</a></li>
+        <li><a href="#/#faq" class="nav-link">FAQ</a></li>
         <li><a href="#/contact" class="nav-link" data-route="contact">Contact</a></li>
-        <li><a href="#/auth/login" class="nav-link" data-route="login">Mon Espace</a></li>
       </ul>
       
       <div class="navbar-actions">
@@ -52,9 +51,8 @@
       <h3 style="margin-bottom: 24px; font-weight: 700;">Menu</h3>
       <ul style="list-style: none; display: flex; flex-direction: column; gap: 20px;">
         <li><a href="#/" class="mobile-nav-link" style="font-size: 18px; font-weight: 600;">Accueil</a></li>
-        <li><a href="#/blog" class="mobile-nav-link" style="font-size: 18px; font-weight: 600;">Blog</a></li>
+        <li><a href="#/#faq" class="mobile-nav-link" style="font-size: 18px; font-weight: 600;">FAQ</a></li>
         <li><a href="#/contact" class="mobile-nav-link" style="font-size: 18px; font-weight: 600;">Contact</a></li>
-        <li><a href="#/auth/login" class="mobile-nav-link" style="font-size: 18px; font-weight: 600;">Mon Espace</a></li>
       </ul>
     </div>
   </div>
@@ -67,7 +65,7 @@
       
       <!-- HERO -->
       <section class="hero-section text-center" style="padding-top: 20px; padding-bottom: 40px; background-color: var(--color-bg);">
-        <div class="container" style="max-width: 1000px; background: #FFFFFF; padding: 24px 24px 60px 24px; border-radius: 32px; border: 1px solid var(--color-border-soft); box-shadow: var(--shadow-soft);">
+        <div class="container hero-container" style="max-width: 1000px; background: #FFFFFF; padding: 24px 24px 60px 24px; border-radius: 32px; border: 1px solid var(--color-border-soft); box-shadow: var(--shadow-soft);">
           
           <!-- Small Breadcrumb at top -->
           <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--color-muted); letter-spacing: 0.08em; margin-bottom: 20px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
@@ -83,8 +81,8 @@
           </div>
 
           <!-- H1 Overlay / Just below -->
-          <div style="margin-top: -70px; position: relative; z-index: 10;">
-            <h1 style="font-size: clamp(34px, 5.5vw, 64px); line-height: 1.05; margin-bottom: 16px;">
+          <div class="hero-content" style="margin-top: -70px; position: relative; z-index: 10;">
+            <h1 style="font-size: clamp(28px, 4.5vw, 52px); line-height: 1.1; font-weight: 700; margin-bottom: 16px;">
               Votre crédit conso vous <span class="accent-word">pèse</span> ?<br>
               Analysez vos <span class="accent-word">droits</span> gratuitement.
             </h1>
@@ -93,8 +91,8 @@
             </p>
 
             <!-- CTA + social proof inline -->
-            <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
-              <a href="#/#diagnostic-zone" class="btn btn-primary" style="padding: 14px 28px; border-radius: 999px; font-size: 14px; background: var(--color-primary); color: #fff;">
+            <div class="hero-cta-row" style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
+              <a href="#/#diagnostic-zone" class="btn btn-primary" style="padding: 14px 28px; border-radius: 999px; font-size: 14px;">
                 ✦ Test gratuit - 2 min
               </a>
               <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--color-text);">
@@ -121,35 +119,35 @@
 
           <!-- Cards Row -->
           <div class="grid-3" style="margin-bottom: 40px;">
-            <div class="service-card" style="border-radius: 20px; overflow: hidden; background: #FFFFFF; border: 1px solid var(--color-border-soft); box-shadow: var(--shadow-soft); display: flex; flex-direction: column; transition: transform .35s ease, box-shadow .35s ease;">
+            <div class="service-card" style="border-radius: 20px; overflow: hidden; background: #FFFFFF; box-shadow: var(--shadow-soft); display: flex; flex-direction: column; transition: transform .35s ease, box-shadow .35s ease;">
               <div style="position: relative; aspect-ratio: 4/3; overflow: hidden;">
                 <img src="assets/card_analysis.png" alt="Analyse IA 2.0" style="width: 100%; height: 100%; object-fit: cover;">
                 <div style="position: absolute; inset: auto 0 0 0; height: 50%; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #FFFFFF 95%); pointer-events: none;"></div>
               </div>
               <div style="padding: 24px; text-align: center; display: flex; flex-direction: column; gap: 8px;">
-                <h3 style="font-family: var(--font-heading); font-size: 24px; color: var(--color-text);">Analyse IA 2.0</h3>
+                <h3 style="font-family: var(--font-heading); font-size: 26px; font-weight: 600; color: var(--color-text);">Analyse IA 2.0</h3>
                 <p style="font-size: 13px; color: var(--color-text-soft);">Exploitation instantanée des règles de conformité bancaire.</p>
               </div>
             </div>
             
-            <div class="service-card" style="border-radius: 20px; overflow: hidden; background: #FFFFFF; border: 1px solid var(--color-border-soft); box-shadow: var(--shadow-soft); display: flex; flex-direction: column; transition: transform .35s ease, box-shadow .35s ease;">
+            <div class="service-card" style="border-radius: 20px; overflow: hidden; background: #FFFFFF; box-shadow: var(--shadow-soft); display: flex; flex-direction: column; transition: transform .35s ease, box-shadow .35s ease;">
               <div style="position: relative; aspect-ratio: 4/3; overflow: hidden;">
                 <img src="assets/card_success.png" alt="98% Taux de réussite" style="width: 100%; height: 100%; object-fit: cover;">
                 <div style="position: absolute; inset: auto 0 0 0; height: 50%; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #FFFFFF 95%); pointer-events: none;"></div>
               </div>
               <div style="padding: 24px; text-align: center; display: flex; flex-direction: column; gap: 8px;">
-                <h3 style="font-family: var(--font-heading); font-size: 24px; color: var(--color-text);">98% Taux de réussite</h3>
+                <h3 style="font-family: var(--font-heading); font-size: 26px; font-weight: 600; color: var(--color-text);">98% Taux de réussite</h3>
                 <p style="font-size: 13px; color: var(--color-text-soft);">Pour les dossiers éligibles ayant initié la procédure (+12%).</p>
               </div>
             </div>
             
-            <div class="service-card" style="border-radius: 20px; overflow: hidden; background: #FFFFFF; border: 1px solid var(--color-border-soft); box-shadow: var(--shadow-soft); display: flex; flex-direction: column; transition: transform .35s ease, box-shadow .35s ease;">
+            <div class="service-card" style="border-radius: 20px; overflow: hidden; background: #FFFFFF; box-shadow: var(--shadow-soft); display: flex; flex-direction: column; transition: transform .35s ease, box-shadow .35s ease;">
               <div style="position: relative; aspect-ratio: 4/3; overflow: hidden;">
                 <img src="assets/card_guarantee.png" alt="Éligibilité Garantie" style="width: 100%; height: 100%; object-fit: cover;">
                 <div style="position: absolute; inset: auto 0 0 0; height: 50%; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #FFFFFF 95%); pointer-events: none;"></div>
               </div>
               <div style="padding: 24px; text-align: center; display: flex; flex-direction: column; gap: 8px;">
-                <h3 style="font-family: var(--font-heading); font-size: 24px; color: var(--color-text);">Éligibilité Garantie</h3>
+                <h3 style="font-family: var(--font-heading); font-size: 26px; font-weight: 600; color: var(--color-text);">Éligibilité Garantie</h3>
                 <p style="font-size: 13px; color: var(--color-text-soft);">Rapports d'experts validés par notre équipe juridique.</p>
               </div>
             </div>
@@ -261,32 +259,42 @@
       <!-- METHODE -->
       <section class="method-section">
         <div class="container">
-          <div class="text-center" style="max-width: 600px; margin: 0 auto 54px;">
-            <span class="label-pill">Notre méthode</span>
-            <h2>Comment ça marche ?</h2>
-          </div>
-          
-          <div class="steps-grid">
-            <div class="step-card">
-              <div class="step-number">01</div>
-              <div class="step-title">Test (2 min)</div>
-              <p style="font-size: 14px;">Vérifiez votre éligibilité en ligne instantanément grâce à notre formulaire intelligent d'analyse.</p>
+          <div class="workflow-panel">
+            <div class="method-header">
+              <span class="label-pill">Notre méthode</span>
+              <h2>Comment ça marche ?</h2>
             </div>
-            <div class="step-card">
-              <div class="step-number">02</div>
-              <div class="step-title">Offre personnalisée</div>
-              <p style="font-size: 14px;">Découvrez nos solutions juridiques adaptées à votre dossier spécifique et le montant récupérable.</p>
+            
+            <div class="workflow-grid">
+              <div class="workflow-card workflow-card-black">
+                <div class="workflow-card-top">
+                  <span class="workflow-tag">Étape 1</span>
+                  <i data-lucide="clipboard-check" class="workflow-icon"></i>
+                </div>
+                <p class="workflow-text">Vérifiez votre éligibilité en ligne instantanément grâce à notre formulaire intelligent d'analyse.</p>
+                <span class="workflow-number">01</span>
+              </div>
+              
+              <div class="workflow-card workflow-card-dark">
+                <div class="workflow-card-top">
+                  <span class="workflow-tag">Étape 2</span>
+                  <i data-lucide="sparkles" class="workflow-icon"></i>
+                </div>
+                <p class="workflow-text">Notre IA analyse votre dossier et identifie les leviers juridiques applicables à votre situation.</p>
+                <span class="workflow-number">02</span>
+              </div>
+              
+              <div class="workflow-card workflow-card-accent">
+                <div class="workflow-card-top">
+                  <span class="workflow-tag">Étape 3</span>
+                  <i data-lucide="shield-check" class="workflow-icon"></i>
+                </div>
+                <p class="workflow-text">Nous activons votre dossier et vous accompagnons pas à pas jusqu'à la régularisation.</p>
+                <span class="workflow-number">03</span>
+              </div>
             </div>
-            <div class="step-card">
-              <div class="step-number">03</div>
-              <div class="step-title">Paiement sécurisé</div>
-              <p style="font-size: 14px;">Réglez en toute sérénité. Nous ne facturons que si votre dossier a de fortes chances de succès.</p>
-            </div>
-            <div class="step-card">
-              <div class="step-number">04</div>
-              <div class="step-title">Dossier activé</div>
-              <p style="font-size: 14px;">Nous prenons le relais immédiatement. Suivez l'avancée de votre litige depuis votre espace client.</p>
-            </div>
+            
+            <p class="workflow-footer">Diagnostic gratuit, sans engagement, 100% en ligne.</p>
           </div>
         </div>
       </section>
@@ -366,7 +374,7 @@
       </section>
 
       <!-- FAQ ACCORDION -->
-      <section class="faq-section">
+      <section class="faq-section" id="faq">
         <div class="container">
           <div class="grid-2" style="align-items: flex-start;">
             <div>
@@ -375,7 +383,7 @@
               <p style="margin-bottom: 24px; max-width: 400px;">
                 Retrouvez toutes les réponses à vos questions concernant nos services, la tarification et le déroulement de votre recours.
               </p>
-              <a href="#/contact" class="btn btn-secondary">Poser une autre question</a>
+              <a href="#/contact" class="btn btn-primary">Poser une autre question</a>
             </div>
             
             <div class="accordion">
@@ -445,16 +453,6 @@
         </div>
       </section>
 
-      <!-- FINAL CTA -->
-      <section class="cta-section text-center" style="background-color: var(--color-brown-dark); color: #FFFFFF;">
-        <div class="container" style="max-width: 700px;">
-          <h2 style="color: #FFFFFF; margin-bottom: 16px;">Prêt à savoir si votre dossier vaut le coup ?</h2>
-          <p style="color: rgba(255,255,255,0.7); margin-bottom: 32px;">Effectuez notre diagnostic intelligent instantané en 2 minutes et identifiez les leviers d'actions possibles sur votre emprunt.</p>
-          <button class="btn btn-primary" id="btn-final-cta-scroll" style="box-shadow: 0 12px 24px rgba(217,131,63,0.4);">
-            Faire le test gratuit — ça prend 2 min
-          </button>
-        </div>
-      </section>
 
     </div>
 

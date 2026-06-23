@@ -25,7 +25,7 @@
   --color-border-soft: #F0E7DF;
 
   /* Fonts */
-  --font-heading: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-heading: "Poppins", "Inter", Arial, sans-serif;
   --font-body: "Inter", "Manrope", Arial, sans-serif;
 
   /* Transitions */
@@ -165,17 +165,18 @@ p {
 }
 
 .btn-primary {
-  background: var(--color-primary);
-  color: #FFFFFF;
+  background: #000000;
+  color: #D1B48C;
   border-radius: 999px;
   padding: 12px 26px;
-  box-shadow: 0 12px 24px rgba(217, 131, 63, 0.25);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  background: var(--color-primary-hover);
-  box-shadow: 0 16px 28px rgba(217, 131, 63, 0.28);
+  background: #1a1a1a;
+  color: #D1B48C;
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.28);
 }
 
 .btn-secondary {
@@ -291,7 +292,6 @@ p {
   background: #FFFFFF;
   border-radius: 20px;
   overflow: hidden;
-  border: 1px solid var(--color-border-soft);
   box-shadow: var(--shadow-soft);
   transition: transform .35s ease, box-shadow .35s ease;
   display: flex;
@@ -318,7 +318,11 @@ p {
 }
 
 .service-card-body h3 {
-  font-size: 24px;
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
 }
 
 /* Pills list style */
@@ -772,29 +776,169 @@ p {
   color: var(--color-text);
 }
 
-/* 10. Steps (Process) */
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+/* 10. Method Section (Workflow cards) */
+.workflow-panel {
+  background: var(--color-card-warm);
+  border-radius: 32px;
+  padding: 64px 48px;
 }
 
-.step-card {
+.method-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.method-header .label-pill {
+  display: inline-flex;
+  margin-bottom: 16px;
+}
+
+.method-header h2 {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--color-text);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+}
+
+.workflow-grid::before {
+  content: '';
+  position: absolute;
+  top: 48px;
+  left: calc(33.33% + 16px);
+  right: calc(33.33% + 16px);
+  border-top: 2px dashed var(--color-border);
+  z-index: 0;
+}
+
+.workflow-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+  min-height: 240px;
 }
 
-.step-number {
-  font-family: var(--font-heading);
-  font-size: 58px;
-  color: rgba(217, 131, 63, 0.3);
-  line-height: 1;
+.workflow-card-black {
+  background: #000000;
+  color: #D1B48C;
 }
 
-.step-title {
+.workflow-card-black .workflow-tag {
+  background: rgba(209, 180, 140, 0.18);
+  color: #D1B48C;
+}
+
+.workflow-card-black .workflow-text {
+  color: rgba(209, 180, 140, 0.85);
+}
+
+.workflow-card-black .workflow-icon {
+  color: #D1B48C;
+}
+
+.workflow-card-black .workflow-number {
+  color: rgba(209, 180, 140, 0.35);
+}
+
+.workflow-card-dark {
+  background: var(--color-brown);
+  color: #FFFFFF;
+}
+
+.workflow-card-dark .workflow-tag {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+.workflow-card-dark .workflow-text {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.workflow-card-dark .workflow-icon {
+  color: var(--color-primary);
+}
+
+.workflow-card-dark .workflow-number {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.workflow-card-accent {
+  background: var(--color-primary);
+  color: var(--color-brown-dark);
+}
+
+.workflow-card-accent .workflow-tag {
+  background: rgba(0, 0, 0, 0.12);
+  color: var(--color-brown-dark);
+}
+
+.workflow-card-accent .workflow-text {
+  color: var(--color-brown-dark);
+}
+
+.workflow-card-accent .workflow-icon {
+  color: var(--color-brown-dark);
+}
+
+.workflow-card-accent .workflow-number {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.workflow-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.workflow-tag {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--color-bg-soft);
+  font-size: 12px;
   font-weight: 600;
+  color: var(--color-text-soft);
+}
+
+.workflow-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-primary);
+}
+
+.workflow-text {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text-soft);
+  flex-grow: 1;
+}
+
+.workflow-number {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  line-height: 1;
+  color: var(--color-text);
+  opacity: 0.3;
+}
+
+.workflow-footer {
+  text-align: center;
+  margin-top: 48px;
   font-size: 16px;
+  color: var(--color-text-soft);
 }
 
 /* 11. Accordion (FAQ) */
@@ -1328,9 +1472,12 @@ p {
   .grid-3 {
     grid-template-columns: repeat(2, 1fr);
   }
-  .steps-grid {
+  .workflow-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
+    gap: 24px;
+  }
+  .workflow-grid::before {
+    display: none;
   }
   .navbar {
     max-width: 100%;
@@ -1361,9 +1508,19 @@ p {
 
 @media (max-width: 576px) {
   .grid-3,
-  .steps-grid,
+  .workflow-grid,
   .footer-top {
     grid-template-columns: 1fr;
+  }
+  .workflow-panel {
+    padding: 40px 24px;
+    border-radius: 24px;
+  }
+  .method-header {
+    margin-bottom: 32px;
+  }
+  .method-header h2 {
+    font-size: clamp(26px, 8vw, 36px);
   }
   
   .testimonial-reviews-grid {
@@ -1379,6 +1536,35 @@ p {
   }
   
   .hero-image-wrapper {
-    aspect-ratio: 16/9;
+    aspect-ratio: 4 / 3 !important;
+  }
+  
+  .hero-container {
+    padding: 16px 16px 40px !important;
+    border-radius: 20px !important;
+  }
+  
+  .hero-content {
+    margin-top: -24px !important;
+  }
+  
+  .hero-content h1 {
+    font-size: clamp(24px, 7vw, 32px) !important;
+    line-height: 1.15 !important;
+  }
+  
+  .hero-content h1 br {
+    display: none;
+  }
+  
+  .hero-cta-row {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+  
+  .hero-section .container > div:first-of-type {
+    font-size: 10px !important;
+    gap: 8px !important;
+    margin-bottom: 12px !important;
   }
 }
