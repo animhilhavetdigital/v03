@@ -30,6 +30,25 @@ document.addEventListener('DOMContentLoaded', () => {
       routeKey = 'offres';
     } else if (hash.startsWith('#/paiement')) {
       routeKey = 'paiement';
+      
+      // Parse query params for offer and price
+      const urlParams = new URLSearchParams(hash.split('?')[1] || '');
+      const offer = urlParams.get('offre') || 'memoire';
+      const price = urlParams.get('price') || '99';
+      
+      const summaryTitle = document.getElementById('pay-summary-title');
+      const summaryAmount = document.getElementById('pay-summary-amount');
+      const submitBtn = document.getElementById('btn-submit-payment');
+      
+      if (summaryTitle) {
+        summaryTitle.textContent = offer === 'memoire' ? 'Mémoire juridique' : 'Service médiation & mise en demeure';
+      }
+      if (summaryAmount) {
+        summaryAmount.textContent = `${price} €`;
+      }
+      if (submitBtn) {
+        submitBtn.textContent = `Payer ${price} €`;
+      }
     } else if (hash.startsWith('#/onboarding')) {
       routeKey = 'onboarding';
     } else if (hash.startsWith('#/auth/login')) {
@@ -163,6 +182,21 @@ document.addEventListener('DOMContentLoaded', () => {
      4. Diagnostic Questions Database
      ========================================== */
   const questions = [
+    {
+      id: 0,
+      type: 'select',
+      section: 'Informations générales',
+      step: 1,
+      question: "À quel moment avez-vous senti que quelque chose clochait : juste après la signature, après les premiers prélèvements, après des relances, après une mise en demeure ou après un fichage ?",
+      options: [
+        "Juste après la signature",
+        "Après les premiers prélèvements",
+        "Après des relances",
+        "Après une mise en demeure",
+        "Après un fichage"
+      ],
+      favorableCheck: () => false
+    },
     {
       id: 1,
       type: 'number',
@@ -694,20 +728,37 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       const eligibleBox = document.getElementById('diag-eligible-box');
+      const prudentBox = document.getElementById('diag-prudent-box');
       const ineligibleBox = document.getElementById('diag-ineligible-box');
 
-      if (score >= 5) {
+      // Reset visibility
+      eligibleBox.style.display = 'none';
+      if (prudentBox) prudentBox.style.display = 'none';
+      ineligibleBox.style.display = 'none';
+
+      const maxScore = questions.filter(q => q.favorableCheck('Oui') || q.favorableCheck('Non')).length; // 14
+
+      if (score >= 9) {
         eligibleBox.style.display = 'block';
-        ineligibleBox.style.display = 'none';
-        document.getElementById('eligible-score-num').textContent = `${score}/16`;
-        document.getElementById('eligible-msg-desc').textContent = `Votre dossier présente ${score} éléments favorables sur 16 critères. Nous recommandons une action rapide.`;
-        speakText("Félicitations, votre dossier est éligible.");
+        document.getElementById('eligible-score-num').textContent = `${score}/${maxScore}`;
+        document.getElementById('eligible-msg-desc').textContent = "Votre situation semble entrer dans notre périmètre. Nous pouvons maintenant transformer vos pièces en dossier clair, structuré et exploitable.";
+        speakText("Votre situation semble entrer dans notre périmètre. Nous pouvons maintenant transformer vos pièces en dossier clair, structuré et exploitable.");
+      } else if (score >= 5) {
+        if (prudentBox) {
+          prudentBox.style.display = 'block';
+          document.getElementById('prudent-score-num').textContent = `${score}/${maxScore}`;
+          document.getElementById('prudent-msg-desc').textContent = "Votre dossier mérite une vérification plus poussée. Nous allons vous indiquer les pièces et informations qui permettront d'y voir plus clair.";
+        } else {
+          eligibleBox.style.display = 'block';
+          document.getElementById('eligible-score-num').textContent = `${score}/${maxScore}`;
+          document.getElementById('eligible-msg-desc').textContent = "Votre dossier mérite une vérification plus poussée. Nous allons vous indiquer les pièces et informations qui permettront d'y voir plus clair.";
+        }
+        speakText("Votre dossier mérite une vérification plus poussée. Nous allons vous indiquer les pièces et informations qui permettront d'y voir plus clair.");
       } else {
         ineligibleBox.style.display = 'block';
-        eligibleBox.style.display = 'none';
-        document.getElementById('ineligible-score-num').textContent = `${score}/16`;
-        document.getElementById('ineligible-msg-desc').textContent = `D'après vos réponses (${score}/16), nous ne détectons pas suffisamment d'irrégularités pour engager une démarche.`;
-        speakText("Désolé, nous ne détectons pas de levier d'action évident.");
+        document.getElementById('ineligible-score-num').textContent = `${score}/${maxScore}`;
+        document.getElementById('ineligible-msg-desc').textContent = "À ce stade, votre situation ne semble pas entrer clairement dans notre périmètre. Vous recevez une explication simple sur les limites identifiées.";
+        speakText("À ce stade, votre situation ne semble pas entrer clairement dans notre périmètre. Vous recevez une explication simple sur les limites identifiées.");
       }
     }, 2000);
   }
@@ -733,12 +784,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Choose diagnostic offer redirect
-  const btnSelectOffer = document.getElementById('btn-select-offer');
-  if (btnSelectOffer) {
-    btnSelectOffer.addEventListener('click', () => {
-      window.location.hash = '#/paiement?offre=diagnostic';
+  document.querySelectorAll('.btn-select-offer-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const offerId = btn.getAttribute('data-offer-id');
+      const price = btn.getAttribute('data-price');
+      if (offerId === '3') {
+        alert("Votre demande d'orientation vers un avocat partenaire a été enregistrée. Un conseiller vous contactera pour analyser vos pièces.");
+        window.location.hash = '#/';
+      } else {
+        window.location.hash = `#/paiement?offre=${offerId === '1' ? 'memoire' : 'mediation'}&price=${price}`;
+      }
     });
-  }
+  });
 
   // Payment simulated processing
   const paymentForm = document.getElementById('payment-checkout-form');
@@ -746,6 +803,7 @@ document.addEventListener('DOMContentLoaded', () => {
     paymentForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const btn = document.getElementById('btn-submit-payment');
+      const currentText = btn.textContent;
       btn.disabled = true;
       btn.textContent = "Traitement en cours...";
       
@@ -754,7 +812,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.hash = '#/onboarding';
         paymentForm.reset();
         btn.disabled = false;
-        btn.textContent = "Payer 99 €";
+        btn.textContent = currentText;
       }, 1500);
     });
   }
